@@ -4,7 +4,7 @@ def CarControl():
     while (1):
         inKey = input("Input the command:")
         if inKey == "exit":
-            ser.write("x".encode('utf-8'))
+            ser.write("e".encode('utf-8'))
             break
         ser.write(inKey.encode('utf-8'))
         recByte = ser.read()
