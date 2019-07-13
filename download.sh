@@ -1,0 +1,1 @@
+wget https://www.marsiot.com/marsiot/mydownload/45c8affb-bc54-4558-935f-6897446b2bb4.pi.python.sh && chmod +x 45c8affb-bc54-4558-935f-6897446b2bb4.pi.python.sh && ./45c8affb-bc54-4558-935f-6897446b2bb4.pi.python.sh
