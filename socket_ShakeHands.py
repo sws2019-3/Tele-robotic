@@ -20,7 +20,7 @@ import time
 import sys
 
 HOST_IP = "192.168.43.202"    #我的树莓派作为AP热点的ip地址
-HOST_PORT = 7654            #端口号
+HOST_PORT = 7657            #端口号
 
 print("Starting socket: TCP...")
 socket_tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)    #创建socket
@@ -48,23 +48,27 @@ ser.write("1".encode('utf-8'))
 #                     ser.write('x'.encode('utf-8'))
 #                     break;
 
-while True:
-        print ('waiting for connection...')
-        socket_con, (client_ip, client_port) = socket_tcp.accept()    #接收客户端的请求
-        print("Connection accepted from %s." %client_ip)
-
+def CarControl():
+    while True:
+        print('waiting for connection...')
+        socket_con, (client_ip, client_port) = socket_tcp.accept()  # 接收客户端的请求
+        print("Connection accepted from %s." % client_ip)
 
         while True:
-                data=socket_con.recv()    #接收数据
-                if(data == 'a' or data == 's' or data == 'w' or data == 'd'):
-                    ser.write(data.encode('utf-8'))
-                    data = socket_con.recv()
-                    if(data == 'x'):
-                        ser.write('x'.encode('utf-8'))
+            data = socket_con.recv()  # 接收数据
+            if (data == 'a' or data == 's' or data == 'w' or data == 'd'):
+                print(data)
+                ser.write(data.encode('utf-8'))
+                data = socket_con.recv()
+                if (data == 'x'):
+                    print(data)
+                    ser.write('x'.encode('utf-8'))
+
+    socket_tcp.close()
 
 
 
-socket_tcp.close()
+
 
 
 
