@@ -19,7 +19,7 @@ import socket
 import time
 import sys
 
-HOST_IP = "192.168.12.1"    #我的树莓派作为AP热点的ip地址
+HOST_IP = "192.168.43.202"    #我的树莓派作为AP热点的ip地址
 HOST_PORT = 7654            #端口号
 
 print("Starting socket: TCP...")
@@ -55,14 +55,14 @@ while True:
 
 
         while True:
-                data=socket_con.recv(1024)    #接收数据
+                data=socket_con.recv()    #接收数据
+                if(data == 'a' or data == 's' or data == 'w' or data == 'd'):
+                    ser.write(data.encode('utf-8'))
+                    data = socket_con.recv()
+                    if(data == 'x'):
+                        ser.write('x'.encode('utf-8'))
 
-                if (data == 'a' or data == 's' or data == 'd' or data == 'w'):
-                    while (1):
-                        if (data == 'x'):
-                            ser.write('x'.encode('utf-8'))
-                            break;
-                        socket_con.send(data)
+
 
 socket_tcp.close()
 
